@@ -1,20 +1,53 @@
-import { useEffect } from 'react';
+import { useDisclosure } from '@chakra-ui/hooks';
+import { useEffect, useState } from 'react';
+import AddAccount from './AddAccount';
+import './MainScreen.css'
 
 const MainScreen = () => {
+  const [loading, setLoading] = useState(true);
+  const [keys, setKeys] = useState();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+
+
   useEffect(() => {
-    console.log('test');
-    const test = {
-      name: 'name',
-      url: 'url',
-      secert: 'secret',
-      id: 'id',
-    };
-    const myKeys = window.electron.ipcRenderer.readKeys();
-    console.log(myKeys);
-    window.electron.ipcRenderer.addKey(test);
-    console.log(myKeys);
+    const newKeys = window.electron.ipcRenderer.readKeys();
+    setKeys(newKeys);
+    setLoading(false);
   }, []);
-  return <button type="button">OpenAuthenticator</button>;
+
+  const refreshKeys = () => {
+    setLoading(true);
+    const newKeys = window.electron.ipcRenderer.readKeys();
+    setKeys(newKeys);
+    setLoading(false);
+  };
+
+  const AccountView = () => {
+    // returing JSON skeleton for now
+    // add ui later
+    return <div>{JSON.stringify(keys)}</div>;
+  };
+  const EmptyView = () => {
+    return (
+      <div>
+        {loading ? (
+          <div>loading</div>
+        ) : (
+          <div className="header">No accounts here :/</div>
+        )}
+      </div>
+    );
+  };
+  return (
+    <div className="main">
+      {keys ? <AccountView /> : <EmptyView />}
+      <button className="add_btn" type="button" onClick={onOpen}>
+        Add an account
+      </button>
+      <AddAccount isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+    </div>
+  );
 };
 
 export default MainScreen;

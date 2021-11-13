@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.header {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 4em;
+  color: rgb(117, 117, 117)
+}
+
+.add_btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 30px;
+  color: rgb(117, 117, 117);
+  margin-top: 20px;
+  padding: 8px;
+}
