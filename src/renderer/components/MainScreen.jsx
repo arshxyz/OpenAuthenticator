@@ -1,6 +1,8 @@
+import { IconButton } from '@chakra-ui/button';
 import { useDisclosure } from '@chakra-ui/hooks';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
+import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 import AddAccount from './AddAccount';
 import './MainScreen.css';
 
@@ -36,7 +38,7 @@ const MainScreen = () => {
     const interval = setInterval(() => {
       const timeLeft = Math.floor(Date.now() / 1000) % 30;
       console.log(timeLeft);
-      setCounter(parseInt(Date.now()/1000) % 30);
+      setCounter(timeLeft*3.333);
       if (timeLeft === 0) {
         console.log('test');
         refreshKeys();
@@ -60,6 +62,7 @@ const MainScreen = () => {
       delete prevKeys[key];
       return prevKeys;
     });
+    refreshKeys();
   };
 
   const AccountView = () => {
@@ -67,10 +70,18 @@ const MainScreen = () => {
     // add ui later
     return (
       <>
+            <CircularProgress value={counter} size="220px" color="green.400">
+              <CircularProgressLabel>40%</CircularProgressLabel>
+              </CircularProgress>
         {Object.keys(keys).map((key) => (
           <div id={key}>
             {keys[key].name} : {key} : {tokens[key]}
-            <DeleteIcon onClick={() => deleteKey(key)} />
+            <IconButton
+              colorScheme="red"
+              size="sm"
+              onClick={() => deleteKey(key)}
+              icon={<DeleteIcon />}
+            />
           </div>
         ))}
       </>

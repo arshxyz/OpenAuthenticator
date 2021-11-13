@@ -11,14 +11,17 @@ import {
 } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
+import { useToast } from "@chakra-ui/react";
 
 const AddAccount = ({ isOpen, onOpen, onClose }) => {
-  const [fields, setFields] = useState({
+  const toast = useToast();
+  const initialState = {
     id: '',
     name: '',
     url: '',
     secret: '',
-  });
+  };
+  const [fields, setFields] = useState(initialState);
   const handleChange = (evt) => {
     const { value } = evt.target;
     setFields({
@@ -28,11 +31,23 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
   };
 
   const onSave = async () => {
+    if (!fields.name || !fields.url || !fields.secret) {
+      toast({
+        title: 'Enter all fields',
+        status: 'warning',
+      });
+      return;
+    }
     await window.electron.ipcRenderer.addKey({
       id: nanoid(8),
       name: fields.name,
       url: fields.url,
       secret: fields.secret,
+    });
+    setFields(initialState);
+    toast({
+      title: 'Saved',
+      status: 'success',
     });
     onClose();
   };
