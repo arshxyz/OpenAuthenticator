@@ -27,8 +27,8 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
     });
   };
 
-  const onSave = () => {
-    window.electron.ipcRenderer.addKey({
+  const onSave = async () => {
+    await window.electron.ipcRenderer.addKey({
       id: nanoid(8),
       name: fields.name,
       url: fields.url,

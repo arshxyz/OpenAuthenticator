@@ -13,11 +13,9 @@ const MainScreen = () => {
   };
   const refreshKeys = () => {
     setLoading(true);
-    console.log("loading");
     const newKeys = window.electron.ipcRenderer.readKeys();
     setKeys(newKeys);
     setLoading(false);
-    console.log("loaded");
   };
 
   const onClose = () => {
