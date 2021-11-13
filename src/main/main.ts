@@ -17,6 +17,12 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
+const storage = require('electron-json-storage');
+
+let keys: {
+  [x: string]: { name: any; url: any; secret: any; timestamp: number };
+};
+
 export default class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -135,3 +141,17 @@ app
     });
   })
   .catch(console.log);
+
+ipcMain.on('add', (event, message) => {
+  keys[message.id] = {
+    name: message.name,
+    url: message.url,
+    secret: message.secret,
+    timestamp: Date.now(),
+  };
+  storage.set('keys', keys, (error: any) => {
+    if (error) {
+      console.log(error);
+    }
+  });
+});
