@@ -143,16 +143,27 @@ app
   .catch(console.log);
 
 ipcMain.on('add', (event, message) => {
-  console.log('IPC FIRED');
-  // keys[message.id] = {
-  //   name: message.name,
-  //   url: message.url,
-  //   secret: message.secret,
-  //   timestamp: Date.now(),
-  // };
-  // storage.set('keys', keys, (error: any) => {
-  //   if (error) {
-  //     console.log(error);
-  //   }
-  // });
+  console.log('IPCADD FIRED');
+  keys[message.id] = {
+    name: message.name,
+    url: message.url,
+    secret: message.secret,
+    timestamp: Date.now(),
+  };
+  storage.set('keys', keys, (error: any) => {
+    if (error) {
+      console.log(error);
+    }
+  });
+});
+
+ipcMain.on('read', (event, message) => {
+  console.log('IPC read fired');
+  // console.log(defaultDataPath);
+  storage.get('keys', (error: any, data: any) => {
+    if (error) throw error;
+    keys = data;
+    // console.log(keys);
+    event.returnValue = data;
+  });
 });
