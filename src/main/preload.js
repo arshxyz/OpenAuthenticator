@@ -19,5 +19,6 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.once(channel, (event, ...args) => func(...args));
       }
     },
+    addKey: (message) => ipcRenderer.send('add', message),
   },
 });

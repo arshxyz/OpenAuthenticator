@@ -9,7 +9,7 @@ const MainScreen = () => {
       secert: 'secret',
       id: 'id',
     };
-    window.electron.ipcRenderer('add', test);
+    window.electron.ipcRenderer.addKey('add', test);
   }, []);
   return <button type="button">OpenAuthenticator</button>;
 };
