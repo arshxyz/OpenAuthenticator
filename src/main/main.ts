@@ -177,12 +177,14 @@ ipcMain.on('get-tokens', (event) => {
   let time: number;
   storage.getAll('keys', (error: any, data: any) => {
     if (error) throw error;
-    Object.keys(data.keys).forEach((key) => {
-      tokens[key] = authenticator.generate(data.keys[key].secret);
-    });
-    time = authenticator.timeRemaining();
-    console.log({ tokens, time });
-    event.returnValue = { tokens, time };
+    if (JSON.stringify(data) !== '{}') {
+      Object.keys(data.keys).forEach((key) => {
+        tokens[key] = authenticator.generate(data.keys[key].secret);
+      });
+      time = authenticator.timeRemaining();
+      console.log({ tokens, time });
+      event.returnValue = { tokens, time };
+    }
   });
 });
 

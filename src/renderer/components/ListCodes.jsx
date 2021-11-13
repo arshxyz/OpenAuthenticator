@@ -19,7 +19,7 @@ const ListCodes = ({ keys, tokens, deleteKey }) => {
 
   return (
     <>
-      {Object.keys(keys).map((key) => (
+      { keys && tokens && Object.keys(keys).map((key) => (
         <div className="account_view_card" key={key}>
           <div className="logo">
             {/* <img /> */}
