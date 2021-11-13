@@ -71,7 +71,6 @@ const MainScreen = () => {
     return (
       <>
             <CircularProgress value={counter} size="220px" color="green.400">
-              <CircularProgressLabel>40%</CircularProgressLabel>
               </CircularProgress>
         {Object.keys(keys).map((key) => (
           <div id={key}>
