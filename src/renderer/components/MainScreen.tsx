@@ -1,27 +1,35 @@
 import { useDisclosure } from '@chakra-ui/hooks';
 import { useEffect, useState } from 'react';
 import AddAccount from './AddAccount';
-import './MainScreen.css'
+import './MainScreen.css';
 
 const MainScreen = () => {
   const [loading, setLoading] = useState(true);
   const [keys, setKeys] = useState();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setOpen] = useState(false);
+  const onOpen = () => {
+    setOpen(true);
+  };
+  const refreshKeys = () => {
+    setLoading(true);
+    console.log("loading");
+    const newKeys = window.electron.ipcRenderer.readKeys();
+    setKeys(newKeys);
+    setLoading(false);
+    console.log("loaded");
+  };
 
-
+  const onClose = () => {
+    setOpen(false);
+    refreshKeys();
+  };
 
   useEffect(() => {
     const newKeys = window.electron.ipcRenderer.readKeys();
     setKeys(newKeys);
     setLoading(false);
   }, []);
-
-  const refreshKeys = () => {
-    setLoading(true);
-    const newKeys = window.electron.ipcRenderer.readKeys();
-    setKeys(newKeys);
-    setLoading(false);
-  };
 
   const AccountView = () => {
     // returing JSON skeleton for now

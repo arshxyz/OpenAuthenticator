@@ -9,6 +9,7 @@ import {
   Button,
   Input,
 } from '@chakra-ui/react';
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
 
 const AddAccount = ({ isOpen, onOpen, onClose }) => {
@@ -18,14 +19,23 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
     url: '',
     secret: '',
   });
-  function handleChange(evt) {
+  const handleChange = (evt) => {
     const { value } = evt.target;
     setFields({
       ...fields,
       [evt.target.name]: value,
     });
-  }
+  };
 
+  const onSave = () => {
+    window.electron.ipcRenderer.addKey({
+      id: nanoid(8),
+      name: fields.name,
+      url: fields.url,
+      secret: fields.secret,
+    });
+    onClose();
+  };
 
   return (
     <>
@@ -59,7 +69,7 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" onClick={onClose}>
+            <Button colorScheme="blue" onClick={onSave}>
               Save
             </Button>
           </ModalFooter>
