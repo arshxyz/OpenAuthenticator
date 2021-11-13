@@ -5,7 +5,7 @@ import './MainScreen.css';
 
 const MainScreen = () => {
   const [loading, setLoading] = useState(true);
-  const [keys, setKeys] = useState();
+  const [keys, setKeys] = useState(false);
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => {
@@ -47,7 +47,7 @@ const MainScreen = () => {
   };
   return (
     <div className="main">
-      {keys ? <AccountView /> : <EmptyView />}
+      {JSON.stringify(keys) !== '{}' ? <AccountView /> : <EmptyView />}
       <button className="add_btn" type="button" onClick={onOpen}>
         Add an account
       </button>
