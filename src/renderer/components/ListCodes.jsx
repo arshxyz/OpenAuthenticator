@@ -1,6 +1,8 @@
 import { IconButton } from '@chakra-ui/button';
 import { DeleteIcon, CopyIcon } from '@chakra-ui/icons';
+import { CircularProgress } from '@chakra-ui/progress';
 import { useToast } from '@chakra-ui/toast';
+import TimeProgress from './CircularProgressWrapper';
 
 const ListCodes = ({ keys, tokens, deleteKey }) => {
   const toast = useToast();
@@ -18,9 +20,13 @@ const ListCodes = ({ keys, tokens, deleteKey }) => {
   return (
     <>
       {Object.keys(keys).map((key) => (
-        <div className="account_view_card">
+        <div className="account_view_card" key={key}>
           <div className="logo">
-            <img />
+            {/* <img /> */}
+            <img
+              alt="lock"
+              src="https://img.icons8.com/ios/50/000000/lock-2.png"
+            />
           </div>
           <div className="account_view_card_info">
             <div className="card_info_code">
@@ -34,6 +40,19 @@ const ListCodes = ({ keys, tokens, deleteKey }) => {
               />
             </div>
             <div className="card_info_name">{keys[key].name}</div>
+          </div>
+          <div className="card_right_panel">
+            <TimeProgress />
+            <div>
+              <IconButton
+                size="sm"
+                variant="solid"
+                icon={<DeleteIcon />}
+                onClick={() => {
+                  deleteKey(key);
+                }}
+              />
+            </div>
           </div>
         </div>
       ))}

@@ -58,6 +58,9 @@
 .logo {
   height: 100%;
   aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .account_view_card_info {
@@ -80,4 +83,13 @@
   font-family: 'Inter';
   font-size: 20px;
   font-weight: 600;
+  color: rgb(117, 117, 117);
+
+}
+.card_right_panel {
+  margin: 4px 8px 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }

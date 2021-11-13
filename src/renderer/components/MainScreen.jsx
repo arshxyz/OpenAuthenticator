@@ -1,8 +1,6 @@
 import { IconButton } from '@chakra-ui/button';
-import { useDisclosure } from '@chakra-ui/hooks';
-import { AddIcon, DeleteIcon, PlusSquareIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 import AddAccount from './AddAccount';
 import './MainScreen.css';
 import ListCodes from './ListCodes';
@@ -11,7 +9,6 @@ const MainScreen = () => {
   const [loading, setLoading] = useState(true);
   const [keys, setKeys] = useState(false);
   const [tokens, setTokens] = useState({});
-  const [counter, setCounter] = useState(Date.now() % 30);
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => {

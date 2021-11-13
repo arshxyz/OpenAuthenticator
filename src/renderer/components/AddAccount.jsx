@@ -8,12 +8,12 @@ import {
   ModalCloseButton,
   Button,
   Input,
+  useToast,
 } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { useToast } from "@chakra-ui/react";
 
-const AddAccount = ({ isOpen, onOpen, onClose }) => {
+const AddAccount = ({ isOpen, onClose }) => {
   const toast = useToast();
   const initialState = {
     id: '',
