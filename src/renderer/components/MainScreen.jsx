@@ -1,10 +1,11 @@
 import { IconButton } from '@chakra-ui/button';
 import { useDisclosure } from '@chakra-ui/hooks';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { AddIcon, DeleteIcon, PlusSquareIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 import AddAccount from './AddAccount';
 import './MainScreen.css';
+import ListCodes from './ListCodes';
 
 const MainScreen = () => {
   const [loading, setLoading] = useState(true);
@@ -31,16 +32,15 @@ const MainScreen = () => {
   useEffect(() => {
     const toks = window.electron.ipcRenderer.getTokens();
     setTokens(toks.tokens);
-    console.log(toks.tokens);
+    // console.log(toks.tokens);
   }, [keys]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const timeLeft = Math.floor(Date.now() / 1000) % 30;
-      console.log(timeLeft);
-      setCounter(timeLeft*3.333);
+      // console.log(timeLeft);
       if (timeLeft === 0) {
-        console.log('test');
+        // console.log('test');
         refreshKeys();
       }
     }, 1000);
@@ -70,19 +70,9 @@ const MainScreen = () => {
     // add ui later
     return (
       <>
-            <CircularProgress value={counter} size="220px" color="green.400">
-              </CircularProgress>
-        {Object.keys(keys).map((key) => (
-          <div id={key}>
-            {keys[key].name} : {key} : {tokens[key]}
-            <IconButton
-              colorScheme="red"
-              size="sm"
-              onClick={() => deleteKey(key)}
-              icon={<DeleteIcon />}
-            />
-          </div>
-        ))}
+        <div className="account_view">
+          <ListCodes keys={keys} tokens={tokens} deleteKey={deleteKey} />
+        </div>
       </>
     );
   };
@@ -101,9 +91,14 @@ const MainScreen = () => {
   return (
     <div className="main">
       {JSON.stringify(keys) !== '{}' ? <AccountView /> : <EmptyView />}
-      <button className="add_btn" type="button" onClick={onOpen}>
-        Add an account
-      </button>
+      <div className="add_btn">
+        <IconButton
+          colorScheme="teal"
+          size="lg"
+          onClick={onOpen}
+          icon={<AddIcon />}
+        />
+      </div>
       <AddAccount isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
     </div>
   );

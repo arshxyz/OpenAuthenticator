@@ -32,10 +32,15 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
 
   const onSave = async () => {
     if (!fields.name || !fields.url || !fields.secret) {
-      toast({
-        title: 'Enter all fields',
-        status: 'warning',
-      });
+      if (!toast.isActive('fields-warning')) {
+        toast({
+          id: 'fields-warning',
+          title: 'Enter all fields',
+          position: 'top-left',
+          variant: 'top-accent',
+          status: 'warning',
+        });
+      }
       return;
     }
     await window.electron.ipcRenderer.addKey({
@@ -47,6 +52,9 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
     setFields(initialState);
     toast({
       title: 'Saved',
+      position: 'top-start',
+      duration: 1000,
+      variant: 'top-accent',
       status: 'success',
     });
     onClose();

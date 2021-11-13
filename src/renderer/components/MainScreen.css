@@ -8,14 +8,45 @@
 
 .header {
   font-family: 'DM Sans', sans-serif;
-  font-size: 4em;
-  color: rgb(117, 117, 117)
+  font-size: 2em;
+  color: rgb(117, 117, 117);
 }
 
 .add_btn {
   font-family: 'DM Sans', sans-serif;
-  font-size: 30px;
-  color: rgb(117, 117, 117);
-  margin-top: 20px;
-  padding: 8px;
+  position: absolute;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.62),
+    0px 18px 88px -4px rgba(24, 39, 75, 0.34);
+    bottom: 2rem;
+    z-index: 1;
+  }
+
+  .account_view {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(243, 243, 243);
+    overflow: auto;
+  }
+
+  .account_view_card {
+    padding: 2.5rem;
+    background-color: white;
+    box-shadow:
+  1.8px 2.3px 6.8px rgba(0, 0, 0, 0.042),
+  3.9px 5px 13.6px rgba(0, 0, 0, 0.048),
+  7.6px 9.7px 21.3px rgba(0, 0, 0, 0.049),
+  17.3px 22px 33.7px rgba(0, 0, 0, 0.049),
+  77px 98px 80px rgba(0, 0, 0, 0.06)
+;
+    height: 3rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 500px;
+    margin: 8px;
 }
