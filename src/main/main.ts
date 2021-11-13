@@ -143,15 +143,16 @@ app
   .catch(console.log);
 
 ipcMain.on('add', (event, message) => {
-  keys[message.id] = {
-    name: message.name,
-    url: message.url,
-    secret: message.secret,
-    timestamp: Date.now(),
-  };
-  storage.set('keys', keys, (error: any) => {
-    if (error) {
-      console.log(error);
-    }
-  });
+  console.log('IPC FIRED');
+  // keys[message.id] = {
+  //   name: message.name,
+  //   url: message.url,
+  //   secret: message.secret,
+  //   timestamp: Date.now(),
+  // };
+  // storage.set('keys', keys, (error: any) => {
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // });
 });
