@@ -40,8 +40,17 @@ const MainScreen = () => {
   const AccountView = () => {
     // returing JSON skeleton for now
     // add ui later
-    return <div>{JSON.stringify(keys)}</div>;
+    return (
+      <>
+        {Object.keys(keys).map((key) => (
+          <div>
+            {key} : {tokens[key]}
+          </div>
+        ))}
+      </>
+    );
   };
+
   const EmptyView = () => {
     return (
       <div>
