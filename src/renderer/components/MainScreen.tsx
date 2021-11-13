@@ -6,6 +6,8 @@ import './MainScreen.css';
 const MainScreen = () => {
   const [loading, setLoading] = useState(true);
   const [keys, setKeys] = useState(false);
+  const [tokens, setTokens] = useState({});
+  const [timeRemainging, setTimeRemaining] = useState(30);
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => {
@@ -22,6 +24,12 @@ const MainScreen = () => {
     setOpen(false);
     refreshKeys();
   };
+  useEffect(() => {
+    const toks = window.electron.ipcRenderer.getTokens();
+    setTokens(toks.tokens);
+    setTimeRemaining(toks.time);
+    console.log(toks.tokens);
+  }, [keys]);
 
   useEffect(() => {
     const newKeys = window.electron.ipcRenderer.readKeys();

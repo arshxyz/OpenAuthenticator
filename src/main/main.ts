@@ -16,6 +16,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { authenticator } from '@otplib/preset-default';
 
 const storage = require('electron-json-storage');
 
@@ -165,5 +166,22 @@ ipcMain.on('read', (event, message) => {
     keys = data;
     // console.log(keys);
     event.returnValue = data;
+  });
+});
+
+ipcMain.on('get-tokens', (event) => {
+  console.log('IPC GET TOKENS FIRED');
+  const tokens: {
+    [key: string]: string;
+  } = {};
+  let time: number;
+  storage.getAll('keys', (error: any, data: any) => {
+    if (error) throw error;
+    Object.keys(data.keys).forEach((key) => {
+      tokens[key] = authenticator.generate(data.keys[key].secret);
+    });
+    time = authenticator.timeRemaining();
+    console.log({ tokens, time });
+    event.returnValue = { tokens, time };
   });
 });

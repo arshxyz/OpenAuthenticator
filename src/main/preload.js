@@ -21,5 +21,6 @@ contextBridge.exposeInMainWorld('electron', {
     },
     addKey: (message) => ipcRenderer.send('add', message),
     readKeys: () => ipcRenderer.sendSync('read'),
+    getTokens: () => ipcRenderer.sendSync('get-tokens'),
   },
 });
