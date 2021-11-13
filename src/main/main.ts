@@ -185,3 +185,13 @@ ipcMain.on('get-tokens', (event) => {
     event.returnValue = { tokens, time };
   });
 });
+
+ipcMain.on('delete-key', (event, message) => {
+  console.log(message);
+  delete keys[message];
+  storage.set('keys', keys, (error: any) => {
+    if (error) throw error;
+    console.log('deleted');
+  });
+  event.returnValue = '';
+});
