@@ -36,7 +36,8 @@ const AddAccount = ({ isOpen, onOpen, onClose }) => {
         toast({
           id: 'fields-warning',
           title: 'Enter all fields',
-          position: 'top-left',
+          position: 'top',
+          duration: 1500,
           variant: 'top-accent',
           status: 'warning',
         });

@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  /* background-color: rgb(243, 243, 243); */
 }
 
 .header {
@@ -30,12 +31,16 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(243, 243, 243);
+    background-color: inherit;
     overflow: auto;
+    margin-top: 8px;
   }
 
   .account_view_card {
-    padding: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    padding: 4px;
     background-color: white;
     box-shadow:
   1.8px 2.3px 6.8px rgba(0, 0, 0, 0.042),
@@ -44,9 +49,35 @@
   17.3px 22px 33.7px rgba(0, 0, 0, 0.049),
   77px 98px 80px rgba(0, 0, 0, 0.06)
 ;
-    height: 3rem;
+    height: 84px;
     border-radius: 0.5rem;
     width: 90%;
     max-width: 500px;
     margin: 8px;
+}
+.logo {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.account_view_card_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.card_info_code {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 32px;
+}
+.token_display {
+  margin-right: 4px;
+}
+.card_info_name {
+  font-family: 'Inter';
+  font-size: 20px;
+  font-weight: 600;
 }
