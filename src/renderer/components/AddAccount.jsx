@@ -77,17 +77,17 @@ const AddAccount = ({ isOpen, onClose }) => {
               mb={3}
             />
             <Input
-              name="url"
-              value={fields.url}
-              onChange={handleChange}
-              placeholder="URL (https://protonmail.com)"
-              mb={3}
-            />
-            <Input
               name="secret"
               value={fields.secret}
               onChange={handleChange}
               placeholder="Secret Key"
+              mb={3}
+            />
+            <Input
+              name="url"
+              value={fields.url}
+              onChange={handleChange}
+              placeholder="URL (https://protonmail.com)"
               mb={3}
             />
           </ModalBody>
