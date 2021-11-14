@@ -16,6 +16,7 @@ A simple open-source, cross-platform, TOTP-based Authenticator for desktop that 
 - [x] Addition and deletion of authenticator tokens
 - [x] Copy to clipboard for ease of use
 - [x] Fetching favicons for each service
+- [x] Automatically refreshes keys  
 
 ## <a name="install">Install and test</a>
 First, clone the repo via git and install dependencies:
