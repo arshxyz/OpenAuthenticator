@@ -6,6 +6,7 @@ A simple open-source, cross-platform, TOTP-based Authenticator for desktop that 
 - [Packaging for production](#package)
 - [Demo Video](https://drive.google.com/file/d/1Ngh5IQ8PMsGNVn14lzE2ks3s8VZbOnJO/view)
 - [Our Team](#team)
+- [Attributions](#attr)
 
 ## Adding an account
 ![adding an account](https://media.giphy.com/media/nvZd2DK3WOdIASduC7/giphy.gif)
@@ -43,6 +44,6 @@ npm run package
 - Paarth Chhabra
 - Pranit Chadda
 
-## Attributions
+## <a name="attr">Attributions
 - [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) for setting up the environment
 - [otplib](https://github.com/yeojz/otplib) for cryptographically generating authentication tokens
