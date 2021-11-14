@@ -5,6 +5,7 @@ A simple open-source, cross-platform, TOTP-based Authenticator for desktop that 
 - [Install and test](#install)
 - [Packaging for production](#package)
 - [Demo Video](https://drive.google.com/file/d/1Ngh5IQ8PMsGNVn14lzE2ks3s8VZbOnJO/view)
+- [Our Team](#team)
 
 ## Adding an account
 ![adding an account](https://media.giphy.com/media/nvZd2DK3WOdIASduC7/giphy.gif)
@@ -35,8 +36,13 @@ To package OpenAuthenticator for your local platform:
 npm run package
 ```
 ## [Demo Video](https://drive.google.com/file/d/1Ngh5IQ8PMsGNVn14lzE2ks3s8VZbOnJO/view)
-## Our Team
+
+## <a name="team">Our Team</a>
 - Aaryak Garg
 - Arsh Kohli
 - Paarth Chhabra
 - Pranit Chadda
+
+## Attributions
+- [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) for setting up the environment
+- [otplib](https://github.com/yeojz/otplib) for cryptographically generating authentication tokens
