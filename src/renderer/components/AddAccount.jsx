@@ -31,7 +31,7 @@ const AddAccount = ({ isOpen, onClose }) => {
   };
 
   const onSave = async () => {
-    if (!fields.name || !fields.url || !fields.secret) {
+    if (!fields.name || !fields.secret) {
       if (!toast.isActive('fields-warning')) {
         toast({
           id: 'fields-warning',

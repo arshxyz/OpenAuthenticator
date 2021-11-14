@@ -25,7 +25,7 @@ const ListCodes = ({ keys, tokens, deleteKey }) => {
             {/* <img /> */}
             <img
               alt="lock"
-              src="https://img.icons8.com/ios/50/000000/lock-2.png"
+              src={keys[key].iconUrl}
             />
           </div>
           <div className="account_view_card_info">

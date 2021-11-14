@@ -21,7 +21,7 @@ import { authenticator } from '@otplib/preset-default';
 const storage = require('electron-json-storage');
 
 let keys: {
-  [x: string]: { name: any; url: any; secret: any; timestamp: number };
+  [x: string]: { name: any; url: any; secret: any; timestamp: number; iconUrl: string };
 };
 
 export default class AppUpdater {
@@ -144,13 +144,29 @@ app
   })
   .catch(console.log);
 
+function normalizeURL(baseURL: string) {
+  if (!baseURL.includes("http://") || !baseURL.includes("https://")) {
+    return "https://" + baseURL;
+  }
+  return baseURL;
+}
+
 ipcMain.on('add', (event, message) => {
   console.log('IPCADD FIRED');
+  if (message.url) {
+    message.url = normalizeURL(message.url);
+    message.iconUrl = message.url + "/favicon.ico";
+  }
+  else {
+    message.iconUrl = "https://img.icons8.com/ios/50/000000/lock-2.png";
+  }
+  message.secret = message.secret.replace(/ /g, '');
   keys[message.id] = {
     name: message.name,
     url: message.url,
     secret: message.secret,
     timestamp: Date.now(),
+    iconUrl: message.iconUrl,
   };
   storage.set('keys', keys, (error: any) => {
     if (error) {
@@ -184,6 +200,7 @@ ipcMain.on('get-tokens', (event) => {
       });
       time = authenticator.timeRemaining();
       console.log({ tokens, time });
+      console.log(keys);
       event.returnValue = { tokens, time };
     }
   });
@@ -198,3 +215,15 @@ ipcMain.on('delete-key', (event, message) => {
   });
   event.returnValue = '';
 });
+
+
+
+//<link\s+(?:type="[^"]+"\s*)?(?:rel="(?:shortcut\s+)?icon"\s*)?(?:type="[^"]+"\s*)?href="([^"]+)"(?:type="[^"]+"\s*)?(?:\s*rel="(?:shortcut\‌​s+)?icon"\s*)?(?:type="[^"]+"\s*)?\s*>
+//  use regex for favicon
+
+// Todo
+// - Refactor Code
+// - Add icon fetching (?)  (regex for favicon)
+// - UI changes
+// - demo video of github auth
+// - gif for readme.md showing the whole flow
