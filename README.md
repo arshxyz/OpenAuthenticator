@@ -1,14 +1,16 @@
 # OpenAuthenticator
 A simple open-source, cross-platform, TOTP-based Authenticator for desktop that even your grandma could use :)
+
+- [Features](#features)
+- [Install and test](#install)
+- [Packaging for production](#package)
+- [Demo Video](https://drive.google.com/file/d/1Ngh5IQ8PMsGNVn14lzE2ks3s8VZbOnJO/view)
+
 ## Adding an account
 ![adding an account](https://media.giphy.com/media/nvZd2DK3WOdIASduC7/giphy.gif)
 ## Generating a key
 ![generating a key](https://media.giphy.com/media/llkly8SemUloQRgSj7/giphy.gif)
 
-[Features](#features)
-[Install and test](#install)
-[Packaging for production](#packaging)
-[Demo Video](https://drive.google.com/file/d/1Ngh5IQ8PMsGNVn14lzE2ks3s8VZbOnJO/view)
 
 ## <a name="features">Features</a>
 - [x] Addition and deletion of authenticator tokens
