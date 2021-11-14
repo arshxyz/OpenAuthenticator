@@ -35,3 +35,8 @@ To package OpenAuthenticator for your local platform:
 npm run package
 ```
 ## [Demo Video](https://drive.google.com/file/d/1Ngh5IQ8PMsGNVn14lzE2ks3s8VZbOnJO/view)
+## Our Team
+- Aaryak Garg
+- Arsh Kohli
+- Paarth Chhabra
+- Pranit Chadda
